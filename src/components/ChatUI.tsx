@@ -14,7 +14,7 @@ export default function () {
   const [inputValue, setInputValue] = useState("");
   const [, executepost] = useAxios(
     {
-      url: "https://54.169.13.42.nip.io/conversation",
+      url: "https://54.169.13.42.nip.io/events",
       method: "POST",
     },
     { manual: true }
@@ -47,7 +47,7 @@ export default function () {
       executepost({
         data: {
           conversation_id: 1,
-          bot_id: 10,
+          bot_id: 12,
           title: "Atchison Bot",
           last_message_id: "",
           message: {
