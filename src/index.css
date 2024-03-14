@@ -1,0 +1,20 @@
+:root {
+  --brand-1: #1877ff;
+  --brand-2: #4692ff;
+  --brand-3: #bad6ff;
+}
+.ChatApp,
+.MessageContainer,
+.Navbar,
+.Message .Bubble,
+.QuickReplies,
+.ChatFooter {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.ChatApp {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+}
