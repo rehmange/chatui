@@ -93,7 +93,6 @@ export default function () {
       placeholder={"Write Something!"}
       inputType={"text"}
       onInputChange={(val) => {
-        console.log("val", val);
         setInputValue(val);
       }}
     />
