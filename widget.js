@@ -14,7 +14,7 @@ script2.async = true;
 
 // Create a container to hold all elements
 var container = document.createElement('div');
-container.id = 'root';
+container.id = 'w-i-d-g-e-t';
 container.style.position = 'fixed';
 container.style.bottom = '5px';
 container.style.right = '5px';
