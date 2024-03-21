@@ -1,40 +1,9 @@
-import { useEffect, useState } from "react";
-import Chat, { Bubble, useMessages } from "@chatui/core";
-import useAxios from "axios-hooks";
+import Chat, { Bubble } from "@chatui/core";
 
-const initialMessages = [
-  {
-    type: "text",
-    content: { text: "How may I help you for Events?" },
-    user: { avatar: "//gw.alicdn.com/tfs/TB1DYHLwMHqK1RjSZFEXXcGMXXa-56-62.svg" },
-  },
-];
 
-export default function () {
-  const [inputValue, setInputValue] = useState("");
-  const [, executepost] = useAxios(
-    {
-      url: "https://54.169.13.42.nip.io/events",
-      method: "POST",
-    },
-    { manual: true }
-  );
-
-  const { messages, appendMsg, setTyping } = useMessages(initialMessages);
-
-  useEffect(() => {
-    function setButtonTextToSend() {
-      var sendButton = document.querySelector(".Composer-sendBtn");
-      if (sendButton) {
-        sendButton.textContent = "Send";
-      } else {
-        console.error("Button element with class name .Composer-sendBtn not found.");
-      }
-    }
-    setButtonTextToSend();
-  }, [inputValue]);
-
+export default function ({messages,appendMsg,setTyping,executepost}: any) {
   function handleSend(type: string, val: string) {
+    
     if (type === "text" && val.trim()) {
       appendMsg({
         type: "text",
@@ -60,10 +29,14 @@ export default function () {
         .then((res: any) => {
           appendMsg({
             type: "text",
-            content: { text: res?.data?.answer },
+            content: { text: res?.data?.answer }
           });
         })
         .catch((err: any) => {
+          appendMsg({
+            type: "text",
+            content: { text: "No result found!" }
+          });
           console.log(err, "err");
         });
     }
@@ -92,9 +65,7 @@ export default function () {
       onSend={handleSend}
       placeholder={"Write Something!"}
       inputType={"text"}
-      onInputChange={(val) => {
-        setInputValue(val);
-      }}
+      locale="in US"
     />
   );
 }
