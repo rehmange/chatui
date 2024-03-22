@@ -25,7 +25,7 @@ function App() {
   let initialMessages = [
     {
       type: "text",
-      content: { text: "How may I help you for Events?" }
+      content: { text: "How may I help you?" }
     },
   ];
 
@@ -39,11 +39,27 @@ function App() {
     initialMessages = chatHistory;
   }
 
+  const urlFound = ['truckistan.pk', 'llmbots.ai', 'ticketluck.com'].find(function (item) { return window.location.hostname.includes(item) });
+
+  let backendUrl = '';
+  switch (urlFound) {
+    case 'truckistan.pk':
+      backendUrl = 'https://13.212.117.31.nip.io/conversation'
+      break;
+    case 'llmbots.ai':
+      backendUrl = 'https://54.169.13.42.nip.io/conversation'
+      break;
+    case 'ticketluck.com':
+      backendUrl = 'https://18.143.170.255.nip.io/conversation'
+      break;
+  }
+  // console.log(backendUrl)
+
   const { messages, appendMsg, setTyping } = useMessages(initialMessages);
   const [toggle, setToggle] = useState(false);
   const [{ loading }, executepost] = useAxios(
     {
-      url: "https://18.143.170.255.nip.io/conversation",
+      url: backendUrl,
       method: "POST",
     },
     { manual: true }
