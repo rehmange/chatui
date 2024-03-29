@@ -39,27 +39,22 @@ function App() {
     initialMessages = chatHistory;
   }
 
-  const urlFound = ['truckistan.pk', 'llmbots.ai', 'ticketluck.com'].find(function (item) { return window.location.hostname.includes(item) });
+  const currentDomain = [
+    { domain: 'platform.truckistan.pk', backendUrl: 'https://18.143.170.255.nip.io/truckistanconversation' },
+    { domain: 'llmbots.ai', backendUrl: 'https://18.143.170.255.nip.io/eventconversation' },
+    { domain: 'ticketluck.com', backendUrl: 'https://18.143.170.255.nip.io/eventconversation' },
+  ].find(function (item) { return window.location.hostname.endsWith(item.domain) });
 
-  let backendUrl = '';
-  switch (urlFound) {
-    case 'truckistan.pk':
-      backendUrl = 'https://13.212.117.31.nip.io/conversation'
-      break;
-    case 'llmbots.ai':
-      backendUrl = 'https://54.169.13.42.nip.io/conversation'
-      break;
-    case 'ticketluck.com':
-      backendUrl = 'https://18.143.170.255.nip.io/conversation'
-      break;
+  if (!currentDomain) {
+    console.error('Domain not found');
+    return null;
   }
-  // console.log(backendUrl)
 
   const { messages, appendMsg, setTyping } = useMessages(initialMessages);
   const [toggle, setToggle] = useState(false);
   const [{ loading }, executepost] = useAxios(
     {
-      url: backendUrl,
+      url: currentDomain.backendUrl,
       method: "POST",
     },
     { manual: true }
