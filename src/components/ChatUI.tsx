@@ -17,12 +17,12 @@ export default function ({ messages, appendMsg, setTyping, executepost, loading 
       });
 
       // set chat history
-      const chatHistory = JSON.parse(sessionStorage.getItem("chatHistory")!);
-      sessionStorage.setItem("chatHistory", JSON.stringify([...chatHistory, {
-        type: "text",
-        content: { text: val },
-        position: "right",
-      }]));
+      // const chatHistory = JSON.parse(sessionStorage.getItem("chatHistory")!);
+      // sessionStorage.setItem("chatHistory", JSON.stringify([...chatHistory, {
+      //   type: "text",
+      //   content: { text: val },
+      //   position: "right",
+      // }]));
 
       setTyping(true);
 
@@ -46,11 +46,11 @@ export default function ({ messages, appendMsg, setTyping, executepost, loading 
           });
 
           // set chat history
-          const chatHistory = JSON.parse(sessionStorage.getItem("chatHistory")!);
-          sessionStorage.setItem("chatHistory", JSON.stringify([...chatHistory, {
-            type: "text",
-            content: { text: res?.data?.answer }
-          }]));
+          // const chatHistory = JSON.parse(sessionStorage.getItem("chatHistory")!);
+          // sessionStorage.setItem("chatHistory", JSON.stringify([...chatHistory, {
+          //   type: "text",
+          //   content: { text: res?.data?.answer }
+          // }]));
 
         })
         .catch((err: any) => {
@@ -62,11 +62,11 @@ export default function ({ messages, appendMsg, setTyping, executepost, loading 
           console.log(err);
 
           // set chat history
-          const chatHistory = JSON.parse(sessionStorage.getItem("chatHistory")!);
-          sessionStorage.setItem("chatHistory", JSON.stringify([...chatHistory, {
-            type: "text",
-            content: { text: "No result found!" }
-          }]));
+          // const chatHistory = JSON.parse(sessionStorage.getItem("chatHistory")!);
+          // sessionStorage.setItem("chatHistory", JSON.stringify([...chatHistory, {
+          //   type: "text",
+          //   content: { text: "No result found!" }
+          // }]));
         })
         .finally(() => setTyping(false));
     }

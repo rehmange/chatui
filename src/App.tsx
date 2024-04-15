@@ -30,20 +30,21 @@ function App() {
   ];
 
   // Check if 'chatHistory' is already stored in sessionStorage
-  if (!sessionStorage.getItem("chatHistory")) {
-    // If not, initialize 'chatHistory' with the initial messages
-    sessionStorage.setItem("chatHistory", JSON.stringify(initialMessages));
-  } else {
-    // If 'chatHistory' exists, retrieve it and set it as the initial messages
-    const chatHistory = JSON.parse(sessionStorage.getItem("chatHistory")!);
-    initialMessages = chatHistory;
-  }
+  // if (!sessionStorage.getItem("chatHistory")) {
+  //   // If not, initialize 'chatHistory' with the initial messages
+  //   sessionStorage.setItem("chatHistory", JSON.stringify(initialMessages));
+  // } else {
+  //   // If 'chatHistory' exists, retrieve it and set it as the initial messages
+  //   const chatHistory = JSON.parse(sessionStorage.getItem("chatHistory")!);
+  //   initialMessages = chatHistory;
+  // }
 
   const currentDomain = [
     { domain: 'platform.truckistan.pk', backendUrl: 'https://18.143.170.255.nip.io/truckistanconversation' },
     { domain: 'llmbots.ai', backendUrl: 'https://18.143.170.255.nip.io/eventconversation' },
     { domain: 'ticketluck.com', backendUrl: 'https://18.143.170.255.nip.io/eventconversation' },
-  ].find(function (item) { return window.location.hostname.endsWith(item.domain) });
+    { domain: 'localhost:5173', backendUrl: 'https://18.143.170.255.nip.io/eventconversation' },
+  ].find(function (item) { return window.location.host.endsWith(item.domain) });
 
   if (!currentDomain) {
     console.error('Domain not found');
