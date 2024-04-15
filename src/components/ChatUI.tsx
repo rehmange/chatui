@@ -1,6 +1,9 @@
 import Chat, { Bubble } from "@chatui/core";
-
-
+function generateRandomAlphaNumeric(length = 128) {
+  const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  return Array.from({ length }, () => charset[Math.floor(Math.random() * charset.length)]).join('');
+}
+const chatSessionId = generateRandomAlphaNumeric()
 export default function ({ messages, appendMsg, setTyping, executepost, loading }: any) {
 
   function handleSend(type: string, val: string) {
@@ -36,7 +39,8 @@ export default function ({ messages, appendMsg, setTyping, executepost, loading 
             question: val,
             model: "llama2-13b-chat",
           },
-          sessionId: sessionStorage.getItem("chatSessionId"),
+          sessionId: chatSessionId,
+          // sessionId: sessionStorage.getItem("chatSessionId"),
         },
       })
         .then((res: any) => {
